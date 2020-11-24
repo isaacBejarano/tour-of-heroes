@@ -1,6 +1,7 @@
 import { Component, OnInit, Optional } from '@angular/core';
 import { Hero } from '../interfaces/hero';
 import { HeroService } from '../hero.service';
+import { MessageService } from '../message.service';
 
 @Component({
   selector: 'app-heroes',
@@ -24,6 +25,7 @@ export class HeroesComponent implements OnInit {
         It certainly shouldn't call a function that makes HTTP
         requests to a remote server as a real data service would.
     */
+    private messageService: MessageService,
     @Optional() private heroService?: HeroService
   ) {}
 
@@ -36,6 +38,7 @@ export class HeroesComponent implements OnInit {
   // methods
   onSelect(hero: Hero): void {
     this.selected = hero;
+    this.messageService.add(`HeroesComponent: Selected hero id=${hero.id}`);
   }
 
   getHeroes(): void {
