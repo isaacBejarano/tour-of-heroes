@@ -11,9 +11,8 @@ import { HEROES } from '../data/mock-heroes';
   // styles: ['b { color:red; }'],
 })
 export class HeroesComponent implements OnInit {
-  selected: Hero; // show html *ngIf selected populated
-
   heroes: Hero[] = HEROES;
+  selected: Hero; // show html *ngIf selected populated
 
   constructor() {}
 

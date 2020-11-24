@@ -1,0 +1,10 @@
+<section *ngIf="propSelected">
+  <h2>{{ propSelected.name | uppercase }} Details</h2>
+  <div><span>id: </span>{{ propSelected.id }}</div>
+  <div>
+    <label
+      >name:
+      <input [(ngModel)]="propSelected.name" placeholder="name" />
+    </label>
+  </div>
+</section>
