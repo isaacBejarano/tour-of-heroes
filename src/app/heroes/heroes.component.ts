@@ -1,7 +1,6 @@
 import { Component, OnInit, Optional } from '@angular/core';
 import { Hero } from '../interfaces/hero';
 import { HeroService } from '../hero.service';
-import { MessageService } from '../message.service';
 
 @Component({
   selector: 'app-heroes',
@@ -13,7 +12,7 @@ import { MessageService } from '../message.service';
 })
 export class HeroesComponent implements OnInit {
   heroes: Hero[];
-  selected: Hero; // show html *ngIf selected populated
+  // selected: Hero; // show html *ngIf selected populated
 
   constructor(
     /* NOTE:
@@ -25,23 +24,21 @@ export class HeroesComponent implements OnInit {
         It certainly shouldn't call a function that makes HTTP
         requests to a remote server as a real data service would.
     */
-    private messageService: MessageService,
+    // private messageService: MessageService,
     @Optional() private heroService?: HeroService
   ) {}
 
   // hooks
   ngOnInit(): void {
-    // initialization (of props) logic
-    this.getHeroes();
+    this.getHeroes(); // initialization (of props) logic
   }
 
-  // methods
-  onSelect(hero: Hero): void {
-    this.selected = hero;
-    this.messageService.add(`HeroesComponent: Selected hero id=${hero.id}`);
-  }
-
+  // async methods
   getHeroes(): void {
+    // prettier-ignore
+    this.heroService.getHeroes() // : Observable<Hero[]>
+      .subscribe(heroes => this.heroes = heroes); // ...when fetched
+
     /* NOTE:
         The HeroesComponent consumes the getHeroes() result
         as if heroes could be fetched synchronously.
@@ -51,9 +48,5 @@ export class HeroesComponent implements OnInit {
         HeroService.getHeroes() should return an Observable
         because it will eventually use the Angular HttpClient.
     */
-
-    // prettier-ignore
-    this.heroService.getHeroes() // : Observable<Hero[]>
-      .subscribe(heroes => this.heroes = heroes); // ...when fetched
   }
 }

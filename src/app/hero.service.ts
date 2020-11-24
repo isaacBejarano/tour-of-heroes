@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
 import { Hero } from './interfaces/hero';
 import { HEROES } from './data/mock-heroes';
+import { Observable, of } from 'rxjs';
 import { MessageService } from './message.service';
 
 // Injectable decorator -> allows Dependency Injection
@@ -15,16 +15,17 @@ export class HeroService {
     private messageService: MessageService
   ) {}
 
-  // sync method
-  // getHeroes(): Hero[] {
-  //   return HEROES;
-  // }
-
-  // async method
+  // async methodssss
   getHeroes(): Observable<Hero[]> {
     // TODO: send the message _after_ fetching the heroes
     this.messageService.add('HeroService: fetched heroes');
     return of(HEROES); // FIXME: mocks HttpClient.get<Hero[]>()
+  }
+
+  getHero(id: number): Observable<Hero> {
+    // TODO: send the message _after_ fetching the heroes
+    this.messageService.add(`HeroService: fetched hero id=${id}`);
+    return of(HEROES.find((hero) => hero.id === id)); // FIXME: mocks HttpClient.get<Hero[]>()
   }
 }
 

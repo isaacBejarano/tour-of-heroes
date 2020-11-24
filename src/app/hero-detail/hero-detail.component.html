@@ -1,10 +1,12 @@
-<section *ngIf="propSelected">
-  <h2>{{ propSelected.name | uppercase }} Details</h2>
-  <div><span>id: </span>{{ propSelected.id }}</div>
+<section *ngIf="hero">
+  <h2>{{ hero.name | uppercase }} Details</h2>
+  <div><span>id: </span>{{ hero.id }}</div>
   <div>
     <label
       >name:
-      <input [(ngModel)]="propSelected.name" placeholder="name" />
+      <input [(ngModel)]="hero.name" placeholder="name" />
     </label>
   </div>
 </section>
+
+<button (click)="goBack()">go back</button>
