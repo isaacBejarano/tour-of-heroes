@@ -3,6 +3,7 @@ import { Hero } from './interfaces/hero';
 import { HEROES } from './data/mock-heroes';
 import { Observable, of } from 'rxjs';
 import { MessageService } from './message.service';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 // Injectable decorator -> allows Dependency Injection
 @Injectable({
